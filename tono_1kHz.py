@@ -14,11 +14,11 @@ tiempo = np.linspace(0, duracion, int(duracion * 44100), False)
 # Generar el tono
 tono = amplitud * np.sin(2 * np.pi * frecuencia * tiempo)
 
-# Guardar el tono en formato FLAC
-nombre_archivo = "tono_1khz.flac"
-sf.write(nombre_archivo, tono, 44100)
+# Guardar el tono en formato WAV
+nombre_archivo_wav = "tono_1khz.wav"
+sf.write(nombre_archivo_wav, tono, 44100)
 
-print(f"Tono guardado como '{nombre_archivo}'")
+print(f"Tono guardado como '{nombre_archivo_wav}'")
 
 # Mostrar la gráfica del tono
 plt.figure()
