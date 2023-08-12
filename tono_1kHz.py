@@ -9,14 +9,14 @@ duracion = 10  # segundos
 amplitud = 0.5  # entre 0 y 1
 
 # Generar el tiempo para la señal
-tiempo = np.linspace(0, duracion, int(duracion * 44100), False)
+tiempo = np.linspace(0, duracion, int(duracion * 200000), False)
 
 # Generar el tono
 tono = amplitud * np.sin(2 * np.pi * frecuencia * tiempo)
 
 # Guardar el tono en formato WAV
 nombre_archivo_wav = "tono_1khz.wav"
-sf.write(nombre_archivo_wav, tono, 44100)
+sf.write(nombre_archivo_wav, tono, 200000)
 
 print(f"Tono guardado como '{nombre_archivo_wav}'")
 
@@ -31,6 +31,6 @@ plt.show()
 
 # Reproducir el tono
 print("Reproduciendo el tono...")
-sd.play(tono, 44100)
+sd.play(tono, 200000)
 sd.wait()
 print("Reproducción completa")
