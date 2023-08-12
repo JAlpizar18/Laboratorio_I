@@ -32,6 +32,6 @@ if __name__ == "__main__":
     plt.show()
 
     play_audio(audio_signal, sample_rate)
-    output_file = "sonido.flac"
+    output_file = "sonido_de_barrido.wav"
     sf.write(output_file, audio_signal, sample_rate)
     print(f"Sound saved to {output_file}")
