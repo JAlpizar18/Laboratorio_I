@@ -1,6 +1,7 @@
 import numpy as np
 import sounddevice as sd
 import matplotlib.pyplot as plt
+import soundfile as sf
 
 def generate_sweep(start_freq, end_freq, duration, sample_rate):
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
@@ -31,4 +32,6 @@ if __name__ == "__main__":
     plt.show()
 
     play_audio(audio_signal, sample_rate)
-
+    output_file = "sonido.flac"
+    sf.write(output_file, audio_signal, sample_rate)
+    print(f"Sound saved to {output_file}")
