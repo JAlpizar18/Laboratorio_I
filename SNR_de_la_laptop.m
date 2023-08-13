@@ -1,6 +1,6 @@
 % Carga las señales de audio
-[senal_original, fs] = audioread('tono_1khz.wav');
-[senal_ruido, ~] = audioread('tono_1khz_desde_laptop.wav');
+[senal_original, fs] = audioread('tono_1khz_desde_laptop.wav');
+[senal_ruido, ~] = audioread('ruido_ambiente_laptop.wav');
 
 % Asegura que ambas señales tengan la misma longitud
 min_length = min(length(senal_original), length(senal_ruido));
