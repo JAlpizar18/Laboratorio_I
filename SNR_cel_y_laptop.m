@@ -1,9 +1,9 @@
 % Nombres de los archivos WAV
-archivo_tono_laptop = 'tono_1khz_desde_laptop.wav';
-archivo_ruido_laptop = 'ruido_ambiente_laptop.wav';
+archivo_tono_laptop = 'tono 1kHz desde laptop.wav';
+archivo_ruido_laptop = 'ruido ambiente laptop.wav';
 
 
-archivo_tono_celular = 'tono_1khz_desde_celular.wav';
+archivo_tono_celular = 'tono 1kHz desde celular.wav';
 archivo_ruido_celular = 'ruido_ambiente_desde_celular.wav';
 try
     % Cargar los archivos WAV
@@ -31,24 +31,18 @@ try
     potencia_tono_celular = trapz(f_tono_celular(idx_tono), pxx_tono_celular(idx_tono));
     potencia_ruido_celular = trapz(f_ruido_celular(idx_ruido), pxx_ruido_celular(idx_ruido));
 
-    % Convertir potencias a dB
-    potencia_tono_laptop_db = 10 * log10(potencia_tono_laptop);
-    potencia_ruido_laptop_db = 10 * log10(potencia_ruido_laptop);
-    potencia_tono_celular_db = 10 * log10(potencia_tono_celular);
-    potencia_ruido_celular_db = 10 * log10(potencia_ruido_celular);
-
     % Calcular el SNR en dB
     snr_db_laptop = 10 * log10(potencia_tono_laptop / potencia_ruido_laptop);
     snr_db_celular = 10 * log10(potencia_tono_celular / potencia_ruido_celular);
 
     % Mostrar los resultados en la consola
-    fprintf('Potencia del tono en el laptop: %.6f dB\n', potencia_tono_laptop_db);
-    fprintf('Potencia del ruido en el laptop: %.6f dB\n', potencia_ruido_laptop_db);
+    fprintf('Potencia promedio del tono en el laptop: %.12f\n', potencia_tono_laptop);
+    fprintf('Potencia promedio del ruido en el laptop: %.12f\n', potencia_ruido_laptop);
     fprintf('SNR en laptop: %.2f dB\n\n', snr_db_laptop);
 
-    fprintf('Potencia del tono en el celular: %.6f dB\n', potencia_tono_celular_db);
-    fprintf('Potencia del ruido en el celular: %.6f dB\n', potencia_ruido_celular_db);
-    fprintf('SNR en celular: %.2f dB\n', snr_db_celular);
+    fprintf('Potencia promedio del tono en el celular: %.12f\n', potencia_tono_celular);
+    fprintf('Potencia promedio del ruido en el celular: %.12f\n', potencia_ruido_celular);
+    fprintf('SNR en el celular: %.2f dB\n', snr_db_celular);
 
     % Graficar la PSD del tono y el ruido en escala logarítmica y el ancho de banda deseado
     figure;
@@ -72,21 +66,11 @@ try
     ylabel('PSD (dB/Hz)');
     legend('Tono', 'Ruido');
     grid on;
-    
-    % Crear gráfico de barras para potencia del tono y potencia de ruido en laptop y celular
-    figure;
-    bar([potencia_tono_laptop_db, potencia_ruido_laptop_db; ...
-         potencia_tono_celular_db, potencia_ruido_celular_db])
-    title('Potencia del Tono y Potencia de Ruido en Laptop y Celular');
-    xlabel('Tipo de Potencia');
-    ylabel('Potencia (dB)');
-    xticks([1 2 4 6]);
-    xticklabels({'Con laptop', 'Con celular'});
-    legend('Tono', 'Ruido');
-    grid on;
 
 catch exception
     disp(['Error: ' exception.message]);
+end
+
 end
 
 
